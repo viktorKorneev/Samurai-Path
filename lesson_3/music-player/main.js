@@ -1,5 +1,5 @@
-import * as player from "./modules/player";
-import songs from "./modules/songs"
+import * as player from "./modules/player.js";
+import songs from "./modules/songs.js"
 import { showSong, showPlaylist } from "./modules/display.js"
 import "./styles/theme.js"
 
