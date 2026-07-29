@@ -17,3 +17,24 @@ console.log(nameInfo)
 //   { name: 'Charlie', length: 7 },
 //   { name: 'Diana', length: 5 }
 // ]
+
+const products = [
+    { name: "Laptop", price: 1000 },
+    { name: "Mouse", price: 50 },
+    { name: "Keyboard", price: 80 },
+]
+
+const productsWithFinalPrice = products.map((product) => {
+    return {
+        name: product.name,
+        price: product.price,
+        finalPrice: product.price - (product.price * 0.15)
+    }
+})
+console.log(productsWithFinalPrice)
+// ⬇️ Итоговый результат
+// [
+//   { name: 'Laptop', price: 1000, finalPrice: 850 },
+//   { name: 'Mouse', price: 50, finalPrice: 42.5 },
+//   { name: 'Keyboard', price: 80, finalPrice: 68 }
+// ]
