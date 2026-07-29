@@ -9,3 +9,7 @@ export function pause() {
 export function stop() {
     console.log("⏹️ Воспроизведение остановлено")
 }
+
+ export function showSong(songName) {
+     console.log(`🎤 Плеер показывает: ${songName}`)
+ }
