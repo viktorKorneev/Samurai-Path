@@ -1,4 +1,4 @@
-import { play, pause, stop, showSong as playerShowSong } from "./player.js";
+import * as player from "./player.js";
 import songs from "./songs.js"
 import { showSong, showPlaylist } from "./display.js"
 
@@ -9,16 +9,16 @@ showPlaylist(songs)
 
 // Включаем первую песню
 showSong(songs[0])
-playerShowSong(songs[0])
-play()
+player.showSong(songs[0])
+player.play()
 
 // Пауза
-pause()
+player.pause()
 
 // Включаем вторую песню
 showSong(songs[1])
-playerShowSong(songs[1])
-play()
+player.showSong(songs[1])
+player.play()
 
 // Останавливаем
-stop()
+player.stop()
