@@ -1,4 +1,5 @@
 import './App.css'
+import {useState} from "react";
 
 // const tasks = null
 const tasks = [
@@ -41,14 +42,17 @@ export function App() {
         return (<span>Задачи отсутствуют</span>)
     }
 
+    const [selectedTaskId, setSelectedTaskId] = useState(null)
+
     return (
         <div>
             <div>
+                <button onClick={() => {setSelectedTaskId(null)}}>Сбросить выделение</button>
                 {tasks.map((task) => {
                     return (
-                        <ul key={task.id} style={{
+                        <ul onClick={ () => {setSelectedTaskId(task.id)}} key={task.id} style={{
                             listStyle: 'none',
-                            border: "3px solid red",
+                            border: selectedTaskId === task.id ? "3px solid blue" : "3px solid red",
                             textAlign: "left",
                             maxWidth: 350,
                             padding: 10,

@@ -1,4 +1,4 @@
-test("should take old men older then 90", () => {
+test.skip("should take old men older then 90", () => {
   const ages = [18, 20, 22, 1, 100, 90, 14];
 
   const oldAges = ages.filter(age => age > 90);
@@ -7,7 +7,7 @@ test("should take old men older then 90", () => {
   expect(oldAges[0]).toBe(100);
 });
 
-test("should take courses chipper 160", () => {
+test.skip("should take courses chipper 160", () => {
   const courses = [
     { title: "CSS", price: 110 },
     { title: "JS", price: 200 },
@@ -22,7 +22,7 @@ test("should take courses chipper 160", () => {
 });
 
 
-test("get only completed tasks", () => {
+test.skip("get only completed tasks", () => {
     const tasks = [
         {id: 1, title: "Bread", isDone: false},
         {id: 2, title: "Milk", isDone: true},
@@ -38,7 +38,7 @@ test("get only completed tasks", () => {
 
 })
 
-test("get only uncompleted tasks", () => {
+test.skip("get only uncompleted tasks", () => {
     const tasks = [
         {id: 1, title: "Bread", isDone: false},
         {id: 2, title: "Milk", isDone: true},

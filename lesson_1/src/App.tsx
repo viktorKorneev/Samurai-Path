@@ -1,5 +1,5 @@
 import './App.css'
-import {User} from "./06-callbacks.tsx";
+import {User} from "./05/06-callbacks.tsx";
 
 function App() {
 
