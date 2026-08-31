@@ -1,30 +1,30 @@
 import './App.css'
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 // const tasks = null
-const tasks = [
-    {
-        id: 1,
-        title: "Купить продукты на неделю",
-        isDone: false,
-        addedAt: "1 сентября",
-        priority: 3,
-    },
-    {
-        id: 2,
-        title: "Полить цветы",
-        isDone: true,
-        addedAt: "2 сентября",
-        priority: 3,
-    },
-    {
-        id: 3,
-        title: "Сходить на тренировку",
-        isDone: false,
-        addedAt: "3 сентября",
-        priority: 0,
-    },
-]
+// const tasks = [
+//     {
+//         id: 1,
+//         title: "Купить продукты на неделю",
+//         isDone: false,
+//         addedAt: "1 сентября",
+//         priority: 3,
+//     },
+//     {
+//         id: 2,
+//         title: "Полить цветы",
+//         isDone: true,
+//         addedAt: "2 сентября",
+//         priority: 3,
+//     },
+//     {
+//         id: 3,
+//         title: "Сходить на тренировку",
+//         isDone: false,
+//         addedAt: "3 сентября",
+//         priority: 0,
+//     },
+// ]
 
 const getPriorityColor = (priority: number) => {
     return priority === 0 ? "#ffffff" :
@@ -34,6 +34,22 @@ const getPriorityColor = (priority: number) => {
 }
 
 export function App() {
+    const [tasks, setTasks] = useState(null)
+    const [selectedTaskId, setSelectedTaskId] = useState(null)
+
+    useEffect(() => {
+        fetch("https://trelly.it-incubator.app/api/1.0/boards/tasks", {
+            headers: {
+                "api-key": "18dc5fd4-f962-432b-9c52-1e155a2c75c8"
+            }
+        })
+            .then((res) => res.json())
+            .then((json) => {
+                setTasks(json.data)
+            })
+    }, [])
+
+
     if (tasks === null) {
         return (<span>Загрузка...</span>)
     }
@@ -42,7 +58,6 @@ export function App() {
         return (<span>Задачи отсутствуют</span>)
     }
 
-    const [selectedTaskId, setSelectedTaskId] = useState(null)
 
     return (
         <div>
@@ -56,12 +71,12 @@ export function App() {
                             textAlign: "left",
                             maxWidth: 350,
                             padding: 10,
-                            backgroundColor: getPriorityColor(task.priority),
+                            backgroundColor: getPriorityColor(task.attributes.priority),
                         }}>
-                            <li style={{textDecorationLine: task.isDone ? "line-through" : "none"}}>
-                                <b>Заголовок:</b> {task.title}</li>
+                            <li style={{textDecorationLine: task.attributes.status ? "line-through" : "none"}}>
+                                <b>Заголовок:</b> {task.attributes.title}</li>
                             <li><b>Статус:</b> <input type={"checkbox"}/></li>
-                            <li><b>Дата создания задачи:</b> {task.addedAt}</li>
+                            <li><b>Дата создания задачи:</b> {new Date(task.attributes.addedAt).toLocaleDateString()}</li>
                         </ul>
                     )
                 })}
